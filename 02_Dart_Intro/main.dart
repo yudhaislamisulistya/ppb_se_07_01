@@ -56,4 +56,81 @@ void main() {
   dynamic name;
   dynamic nim;
   dynamic suggestion;
+
+  // Type 1: weakly typed => value menentukan type data
+  dynamic numbers = [
+    1,
+    2,
+    3,
+    4,
+    5,
+  ];
+  print(numbers);
+  print(numbers.runtimeType);
+
+  // Type 2: strongly typed => type data menentukan value
+  // List<String> numbers2 = [1, 2, 3, 4, 5.5, true];
+  List<bool> isLoadings = [false, false, false, false];
+  bool isLoadingError = false;
+  bool isLoadingProses = false;
+  bool isLoadingDataA = false;
+
+  // [1,2,3, true, "halo", ["coding", "reading"]] ? bagaimana saya membuat variabel ini?
+
+  List<dynamic> data = [
+    1,
+    2,
+    3,
+    true,
+    "halo",
+    ["coding", "reading"]
+  ];
+
+  // print("hobi kedua saya adalah $data[5][1]"); // salah
+  print("hobi kedua saya adalah ${data[5][1]}"); // benar untuk interpolasi
+
+  // 1: weak map
+  var todo = {
+    "userId": 1,
+    "id": 1,
+    "title": "delectus aut autem",
+    "completed": false,
+  };
+
+  print(todo);
+  print(todo.runtimeType);
+
+  // Map<keyTypeData, valueTypeData> var = {value}; // strongly map
+  Map<String, String> todo2 = {
+    "userId": "1",
+    "id": "1",
+    "title": "delectus aut autem",
+    "completed": "false",
+  };
+
+  List<Map<String, dynamic>> todos = [
+    {"userId": 1, "id": 1, "title": "delectus aut autem", "completed": false},
+    {"userId": 1, "id": 2, "title": "quis ut nam facilis et officia qui", "completed": false},
+    {"userId": 1, "id": 3, "title": "fugiat veniam minus", "completed": false}
+  ];
+
+  print(todos[2]["title"]);
+
+  String statusLulus;
+  int nilai = 70;
+
+  if (nilai > 75) {
+    statusLulus = "Selamat Anda Lulus";
+  } else {
+    statusLulus = "Maaf Anda Tidak Lulus";
+  }
+
+  print(statusLulus);
+
+  // Ternary Operator atau Conditional Expression
+  statusLulus = (nilai > 75) ? "Selamat Anda Lulus" : "Maaf Anda Tidak Lulus";
+
+  for (int number in numbers) {
+    print(number);
+  }
 }
