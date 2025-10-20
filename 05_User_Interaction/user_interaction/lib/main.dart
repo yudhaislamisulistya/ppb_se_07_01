@@ -1,6 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:user_interaction/utils/color_collections.dart';
+import 'package:user_interaction/utils/spacing_collections.dart';
+import 'package:user_interaction/utils/typography_collections.dart';
 
 void main() {
   runApp(const MyApp());
@@ -63,7 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
-        // popup menu
         actions: [
           PopupMenuButton(
             itemBuilder: (context) => [
@@ -106,7 +108,20 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(onPressed: randomNumber, icon: const Icon(Icons.refresh)),
-            Text("Random value:  $_number"),
+            Text(
+              "Random value:  $_number",
+              style: TypographyCollections.textSmBold.copyWith(
+                color: WarningColorsPallete.danger,
+              ),
+            ),
+            const SizedBox(height: SpacingCollections.spacingSm),
+            Text(
+              "Random value:  $_number",
+              style: const TextStyle(
+                fontSize: 20,
+                color: WarningColorsPallete.success,
+              ),
+            ),
             DropdownButton(
               items: items,
               value: dropdownValue,
