@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:user_interaction/widgets/item_container.dart';
 
@@ -39,12 +41,35 @@ class _MyHomePageState extends State<MyHomePage> {
     "Eka",
   ];
   int index = 0;
+
+  List<DropdownMenuItem<String>> items = [
+    const DropdownMenuItem(
+      value: "One",
+      child: Text("One"),
+    ),
+    const DropdownMenuItem(
+      value: "Two",
+      child: Text("Two"),
+    ),
+    const DropdownMenuItem(
+      value: "Three",
+      child: Text("Three"),
+    ),
+  ];
+  String selectedItem = "One";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
+        centerTitle: false,
+        actions: const [
+          Icon(Icons.settings),
+          SizedBox(width: 12),
+          Icon(Icons.logout),
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -77,6 +102,40 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             child: const Text("Generate Item form One"),
           ),
+          DropdownButton(
+            value: selectedItem,
+            items: items,
+            onChanged: (value) {
+              selectedItem = value!;
+              setState(() {});
+              print(value);
+            },
+          ),
+          OutlinedButton(
+            onPressed: () {},
+            child: const Text("Generate Item from Two"),
+          ),
+          GestureDetector(
+            onTap: () {
+              print("Anda menekan icon alarm");
+            },
+            child: Icon(
+              Icons.access_alarm,
+              size: 50,
+              color: Colors.blue[900],
+            ),
+          ),
+          IconButton(
+              onPressed: () {
+                SnackBar snackBar = const SnackBar(
+                  content: Text("Anda menekan icon alarm"),
+                  backgroundColor: Colors.red,
+                  showCloseIcon: true,
+                );
+
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+              icon: const Icon(Icons.add_alarm))
         ],
       ),
     );
